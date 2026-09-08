@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "CuratedCollection": {
+      "title": "Curated Collection",
+      "description": "Curated occasion shoe and styling collection",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "shoeNote": { "type": "string" },
+        "tagline": { "type": "string" },
+        "image": { "type": "string" },
+        "theme": { "type": "string" },
+        "order": { "type": "number" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "shoeNote", "image"]
+    },
+    "CmsSnapshot": {
+      "title": "CMS Backup Snapshot",
+      "description": "Historical backup and version snapshot of collections and configurations",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "note": { "type": "string" },
+        "collectionsJson": { "type": "string" }
+      },
+      "required": ["id", "timestamp", "collectionsJson"]
+    }
+  },
+  "firestore": {
+    "/collections/{collectionId}": {
+      "schema": "CuratedCollection",
+      "description": "Live curated collections edited via CMS"
+    },
+    "/cms_snapshots/{snapshotId}": {
+      "schema": "CmsSnapshot",
+      "description": "Backup version snapshots for one-click restore"
+    }
+  }
+}
